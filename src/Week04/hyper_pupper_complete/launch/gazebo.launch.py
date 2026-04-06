@@ -2,11 +2,7 @@ import os
 import xacro
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import (
-    IncludeLaunchDescription, AppendEnvironmentVariable,
-    RegisterEventHandler, TimerAction
-)
-from launch.event_handlers import OnProcessExit
+from launch.actions import IncludeLaunchDescription, AppendEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 
@@ -67,50 +63,10 @@ def generate_launch_description():
             '/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan',
             # TF (좌표 변환 데이터 - Gazebo에서 계산된 위치를 ROS로 가져옴)
             '/tf@tf2_msgs/msg/TFMessage[gz.msgs.Pose_V',
-            # Camera Data (Gazebo에서 생성된 카메라 데이터를 ROS로 가져옴)
             '/camera/image_raw@sensor_msgs/msg/Image[gz.msgs.Image',
             '/camera/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo',
         ],
         output='screen'
-    )
-
-    # 6. [컨트롤러] ros2_control 컨트롤러 활성화
-    # spawn_entity가 완료된 후에 실행되어야 합니다.
-    spawn_joint_state_broadcaster = Node(
-        package='controller_manager',
-        executable='spawner',
-        arguments=['joint_state_broadcaster'],
-        output='screen',
-    )
-
-    spawn_leg_controller = Node(
-        package='controller_manager',
-        executable='spawner',
-        arguments=['leg_controller'],
-        output='screen',
-    )
-
-    # 7. [걸음걸이] Gait Controller 노드
-    # cmd_vel → IK 계산 → 12개 관절 제어
-    gait_node = Node(
-        package='hyper_pupper_control',
-        executable='gait_node',
-        output='screen',
-    )
-
-    # 이벤트 핸들러: spawn 완료 후 → 컨트롤러 활성화 → gait 노드 시작
-    activate_controllers_after_spawn = RegisterEventHandler(
-        OnProcessExit(
-            target_action=spawn_entity,
-            on_exit=[spawn_joint_state_broadcaster, spawn_leg_controller],
-        )
-    )
-
-    start_gait_after_leg_ctrl = RegisterEventHandler(
-        OnProcessExit(
-            target_action=spawn_leg_controller,
-            on_exit=[gait_node],
-        )
     )
 
     return LaunchDescription([
@@ -118,7 +74,5 @@ def generate_launch_description():
         gazebo,
         spawn_entity,
         robot_state_publisher,
-        bridge,
-        activate_controllers_after_spawn,
-        start_gait_after_leg_ctrl,
+        bridge
     ])

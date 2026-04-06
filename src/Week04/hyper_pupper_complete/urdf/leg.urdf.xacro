@@ -8,7 +8,7 @@
             <xacro:property name="upper_leg_to_lower_leg" value="${upper_leg_to_lower_leg_distance}" />
 
             <xacro:property name="hip_mesh_path" value="package://hyper_pupper_complete/meshes/${leg}_hip.stl" />
-            <xacro:property name="upper_leg_mesh_path" value="package://hyper_pupper_complete/meshes/${leg}_upper_leg.stl" />
+            <xacro:property name="upper_leg_mesh_path" value="package://hyper_pupper_complete/meshes/${leg}_lower_leg.stl" />
             <xacro:property name="lower_leg_mesh_path" value="package://hyper_pupper_complete/meshes/${leg}_lower_leg.stl" />
         </xacro:if>
 
@@ -18,7 +18,7 @@
             <xacro:property name="upper_leg_to_lower_leg" value="${upper_leg_to_lower_leg_distance}" />
 
             <xacro:property name="hip_mesh_path" value="package://hyper_pupper_complete/meshes/${leg}_hip.stl" />
-            <xacro:property name="upper_leg_mesh_path" value="package://hyper_pupper_complete/meshes/${leg}_upper_leg.stl" />
+            <xacro:property name="upper_leg_mesh_path" value="package://hyper_pupper_complete/meshes/${leg}_lower_leg.stl" />
             <xacro:property name="lower_leg_mesh_path" value="package://hyper_pupper_complete/meshes/${leg}_lower_leg.stl" />
         </xacro:if>
 
@@ -28,7 +28,7 @@
             <xacro:property name="upper_leg_to_lower_leg" value="-${upper_leg_to_lower_leg_distance}" />
 
             <xacro:property name="hip_mesh_path" value="package://hyper_pupper_complete/meshes/${leg}_hip.stl" />
-            <xacro:property name="upper_leg_mesh_path" value="package://hyper_pupper_complete/meshes/${leg}_upper_leg.stl" />
+            <xacro:property name="upper_leg_mesh_path" value="package://hyper_pupper_complete/meshes/${leg}_lower_leg.stl" />
             <xacro:property name="lower_leg_mesh_path" value="package://hyper_pupper_complete/meshes/${leg}_lower_leg.stl" />
         </xacro:if>
 
@@ -38,7 +38,7 @@
             <xacro:property name="upper_leg_to_lower_leg" value="-${upper_leg_to_lower_leg_distance}" />
 
             <xacro:property name="hip_mesh_path" value="package://hyper_pupper_complete/meshes/${leg}_hip.stl" />
-            <xacro:property name="upper_leg_mesh_path" value="package://hyper_pupper_complete/meshes/${leg}_upper_leg.stl" />
+            <xacro:property name="upper_leg_mesh_path" value="package://hyper_pupper_complete/meshes/${leg}_lower_leg.stl" />
             <xacro:property name="lower_leg_mesh_path" value="package://hyper_pupper_complete/meshes/${leg}_lower_leg.stl" />
         </xacro:if>
 

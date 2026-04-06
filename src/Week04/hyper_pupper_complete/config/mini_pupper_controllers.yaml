@@ -30,3 +30,4 @@ leg_controller:
     state_interfaces:
       - position
       - velocity
+      
