@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<robot name="spot_leg">
+
+  <material name="spot_yellow">
+    <color rgba="0.9 0.7 0.1 1.0"/>
+  </material>
+  <material name="dark_grey">
+    <color rgba="0.2 0.2 0.2 1.0"/>
+  </material>
+  <material name="black">
+    <color rgba="0.1 0.1 0.1 1.0"/>
+  </material>
+
+  <link name="body">
+    <visual>
+      <geometry>
+        <box size="0.5 0.2 0.1"/>
+      </geometry>
+      <material name="dark_grey"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.5 0.2 0.1"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="front_left_hip_joint" type="revolute">
+    <parent link="body"/>
+    <child link="thigh"/>
+    <origin xyz="0.25 0.14 0" rpy="0 0 0"/> 
+    <axis xyz="0 1 0"/> 
+    <limit lower="-1.57" upper="1.57" effort="100" velocity="1.0"/>
+  </joint>
+
+  <link name="thigh">
+    <visual>
+      <origin xyz="0 0 -0.1" rpy="0 0 0"/> 
+      <geometry>
+        <box size="0.08 0.08 0.22"/>
+      </geometry>
+      <material name="spot_yellow"/>
+    </visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/> 
+      <geometry>
+        <cylinder radius="0.05" length="0.1"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.1" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.08 0.08 0.22"/> 
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.5"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.005"/>
+    </inertial>
+  </link>
+  
+  <joint name="front_left_knee_joint" type="revolute">
+    <parent link="thigh"/>
+    <child link="calf"/>
+    <origin xyz="0 0 -0.2" rpy="0 0 0"/> 
+    <axis xyz="0 1 0"/>
+    <limit lower="-2.0" upper="0.0" effort="100" velocity="1.0"/>
+  </joint>
+
+  <link name="calf">
+    <visual>
+      <origin xyz="0 0 -0.1" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04 0.04 0.22"/>
+      </geometry>
+      <material name="dark_grey"/>
+    </visual>
+    <visual>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.04" length="0.06"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <visual>
+      <origin xyz="0 0 -0.21" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.03"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.1" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.04 0.04 0.22"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="0.005" ixy="0" ixz="0" iyy="0.005" iyz="0" izz="0.001"/>
+    </inertial>
+  </link>
+
+</robot>

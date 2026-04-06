@@ -1,0 +1,4 @@
+float64 voltage
+float64 percentage
+string status
+string current_led_color
