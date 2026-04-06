@@ -1,0 +1,20 @@
+# ROS 2 workspace build artifacts
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Editor
+.vscode/
+*.swp
+*.swo
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
